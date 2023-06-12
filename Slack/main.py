@@ -6,12 +6,12 @@ slack_token = input("Copy and paste your slack token here: \n")
 client = WebClient(token=slack_token)
 
 while (True):
-    options2 = ["channel","direct message","quit"]
+    options2 = ["Channel","Direct Message","Quit"]
     print("Do you want to send to a channel or direct message: ")
     menu = TerminalMenu(options2)
     ans = menu.show()
    
-    if options2[ans] == "channel":
+    if options2[ans] == "Channel":
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
 
@@ -29,7 +29,7 @@ while (True):
 
         else:
             print("Failed to retrieve channels. Error:", response["error"])
-    elif options2[ans] == "quit":
+    elif options2[ans] == "Quit":
         print("Noice!")
         break
     else:
