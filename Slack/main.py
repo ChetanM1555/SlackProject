@@ -1,22 +1,14 @@
 from slack_sdk.web import WebClient
 from simple_term_menu import TerminalMenu
-
-class colors:
-    RED = '\033[91m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    BLUE = '\033[94m'
-    MAGENTA = '\033[95m'
-    CYAN = '\033[96m'
-    RESET = '\033[0m'
+from colors import colors
 
 # Create a WebClient instance using your API token
-slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n"+colors.YELLOW)
+slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n" + colors.YELLOW)
 client = WebClient(token=slack_token)
 
 while (True):
     options2 = ["Channel","Direct Message","Quit"]
-    print(colors.GREEN + "Do you want to send to a channel or direct message: "+colors.YELLOW)
+    print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
     menu = TerminalMenu(options2)
     ans = menu.show()
 
