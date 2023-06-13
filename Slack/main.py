@@ -35,14 +35,14 @@ while (True):
         break
     else:
         response = client.users_list()
-
+        # print(response)
         options = []
 
         if response["ok"]:
 
             for user in response["members"]:
                 user_id = user["id"]
-                user_name = user["real_name"] or user["name"]
+                user_name = user["name"]
                 choice = f"{user_name} = {user_id}"
                 options.append(choice)
 
