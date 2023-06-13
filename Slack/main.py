@@ -1,16 +1,25 @@
 from slack_sdk.web import WebClient
 from simple_term_menu import TerminalMenu
 
+class colors:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    RESET = '\033[0m'
+
 # Create a WebClient instance using your API token
-slack_token = input("Copy and paste your slack token here: \n")
+slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n"+colors.YELLOW)
 client = WebClient(token=slack_token)
 
 while (True):
     options2 = ["Channel","Direct Message","Quit"]
-    print("Do you want to send to a channel or direct message: ")
+    print(colors.GREEN + "Do you want to send to a channel or direct message: "+colors.YELLOW)
     menu = TerminalMenu(options2)
     ans = menu.show()
-   
+
     if options2[ans] == "Channel":
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
@@ -28,9 +37,9 @@ while (True):
                 options.append(choice)
 
         else:
-            print("Failed to retrieve channels. Error:", response["error"])
+            print(colors.RED + "Failed to retrieve channels. Error:", response["error"])
     elif options2[ans] == "Quit":
-        print("Noice!")
+        print(colors.CYAN + "Noice!")
         break
     else:
         response = client.users_list()
@@ -49,14 +58,14 @@ while (True):
     selected_option = menu.show()
 
     # Handle user selection
-    print("Selected option:", selected_option)
+    print(colors.CYAN + "Selected option:", options[selected_option])
     selected_option = options[selected_option]
 
     # Define the channel and message you want to send
     a = selected_option.split(" = ")
 
     channel_id = a[1]  # Replace with the actual channel ID
-    message = input("Enter a message: ")
+    message = input(colors.GREEN + "Enter a message: "+colors.YELLOW)
 
 
     # Send the message
@@ -64,6 +73,6 @@ while (True):
 
     # Check if the message was sent successfully
     if response["ok"]:
-        print("Message sent successfully!")
+        print(colors.GREEN + "Message sent successfully!")
     else:
-        print("Failed to send message. Error: ", response["error"])
+        print(colors.RED + "Failed to send message. Error: ", response["error"])
