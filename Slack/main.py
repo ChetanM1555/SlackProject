@@ -1,13 +1,20 @@
 from slack_sdk.web import WebClient
 from simple_term_menu import TerminalMenu
 from colors import colors
+import create_list as c
 
 # Create a WebClient instance using your API token
-slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n" + colors.YELLOW)
-client = WebClient(token=slack_token)
+while(True):
+    
+        slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n" + colors.YELLOW)
+        client = WebClient(token=slack_token)
+        break
+    
 
 while (True):
     options2 = ["Channel","Direct Message","Quit"]
+    options = []
+
     print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
     menu = TerminalMenu(options2)
     ans = menu.show()
@@ -15,36 +22,17 @@ while (True):
     if options2[ans] == "Channel":
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
-
-        options = []
         
-        # Check if the API call was successful
-        if response["ok"]:
-            # Iterate over the list of channels and print their IDs and names
-            print("")
-            for channel in response["channels"]:
-                channel_id = channel["id"]
-                channel_name = channel["name"]
-                choice = f"{channel_name} = {channel_id}"
-                options.append(choice)
-
-        else:
-            print(colors.RED + "Failed to retrieve channels. Error:", response["error"])
+        options = c.channel_list(options, response)
+        
     elif options2[ans] == "Quit":
         print(colors.CYAN + "Noice!")
         break
+
     else:
         response = client.users_list()
-        # print(response)
-        options = []
 
-        if response["ok"]:
-
-            for user in response["members"]:
-                user_id = user["id"]
-                user_name = user["name"]
-                choice = f"{user_name} = {user_id}"
-                options.append(choice)
+        options = c.user_list(options, response)
 
     menu = TerminalMenu(options)
     selected_option = menu.show()
