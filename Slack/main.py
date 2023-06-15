@@ -12,26 +12,33 @@ while(True):
     
 
 while (True):
-    options2 = ["Channel","Direct Message","Quit"]
+    options2 = ["Channel","Direct Message","Invite Something","Quit"]
     options = []
 
-    print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
+    
     menu = TerminalMenu(options2)
     ans = menu.show()
 
     if options2[ans] == "Channel":
+        print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
-        
         options = c.channel_list(options, response)
+
+    elif options2 == "Invite Something":
+         print("Who would you like to invite?")
+         response = client.users_list()
+         print("What channel would yoiu like to invite them to?")
+        #  response2
+
         
     elif options2[ans] == "Quit":
+        print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
         print(colors.CYAN + "Noice!")
         break
 
     else:
         response = client.users_list()
-
         options = c.user_list(options, response)
 
     menu = TerminalMenu(options)
