@@ -1,12 +1,12 @@
 from slack_sdk.web import WebClient
-from simple_term_menu import TerminalMenu
+# from simple_term_menu import hgTerminalMenu
 from colors import colors
 import create_list as c
 
 # Create a WebClient instance using your API token
 while(True):
     
-        slack_token = input(colors.GREEN + "Copy and paste your slack token here: \n" + colors.YELLOW)
+        slack_token = input(colors.BLUE + "Copy and paste your slack token here: \n" + colors.RESET)
         client = WebClient(token=slack_token)
         break
     
@@ -20,7 +20,7 @@ while (True):
     ans = menu.show()
 
     if options2[ans] == "Channel":
-        print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
+        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.RESET)
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
         options = c.channel_list(options, response)
@@ -33,7 +33,7 @@ while (True):
 
         
     elif options2[ans] == "Quit":
-        print(colors.GREEN + "Do you want to send to a channel or direct message: " + colors.YELLOW)
+        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.RESET)
         print(colors.CYAN + "Noice!")
         break
 
@@ -52,7 +52,7 @@ while (True):
     a = selected_option.split(" = ")
 
     channel_id = a[1]  # Replace with the actual channel ID
-    message = input(colors.GREEN + "Enter a message: "+colors.YELLOW)
+    message = input(colors.BLUE + "Enter a message: "+colors.RESET)
 
 
     # Send the message
@@ -62,4 +62,4 @@ while (True):
     if response["ok"]:
         print(colors.GREEN + "Message sent successfully!")
     else:
-        print(colors.RED + "Failed to send message. Error: ", response["error"])
+        print(colors.PINK + "Failed to send message. Error: ", response["error"])

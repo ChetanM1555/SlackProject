@@ -8,7 +8,8 @@ def channel_list(options, response):
             for channel in response["channels"]:
                 channel_id = channel["id"]
                 channel_name = channel["name"]
-                choice = f"{channel_name} = {channel_id}"
+                # choice = f"{channel_name} = {channel_id}"
+                choice = f"{colors.PURPLE}{channel_name} = {channel_id}"
                 options.append(choice)
         else:
             print(colors.RED + "Failed to retrieve channels. Error:", response["error"])
@@ -21,7 +22,8 @@ def user_list(options, response):
         for user in response["members"]:
             user_id = user["id"]
             user_name = user["name"]
-            choice = f"{user_name} = {user_id}"
+            # choice = f"{user_name} = {user_id}"
+            choice = f"{colors.PURPLE}{user_name} = {user_id}"
             options.append(choice)
             
         return options
