@@ -3,8 +3,6 @@ class colors:
     GREEN = '\033[92m'
     YELLOW = '\033[93m'
     BLUE = '\033[94m'
-    MAGENTA = '\033[95m'
     CYAN = '\033[96m'
     PINK = '\033[95m'
-    PURPLE = '\033[94m'
     RESET = '\033[0m'

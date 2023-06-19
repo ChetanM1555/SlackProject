@@ -1,12 +1,12 @@
 from slack_sdk.web import WebClient
-# from simple_term_menu import hgTerminalMenu
+from simple_term_menu import TerminalMenu
 from colors import colors
 import create_list as c
 
 # Create a WebClient instance using your API token
 while(True):
     
-        slack_token = input(colors.BLUE + "Copy and paste your slack token here: \n" + colors.RESET)
+        slack_token = input(colors.BLUE + "Copy and paste your slack token here: \n" + colors.PINK)
         client = WebClient(token=slack_token)
         break
     
@@ -18,26 +18,27 @@ while (True):
     
     menu = TerminalMenu(options2)
     ans = menu.show()
-
+    
     if options2[ans] == "Channel":
-        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.RESET)
+        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.PINK)
         # Call the conversations.list method to retrieve the list of channels
         response = client.conversations_list()
         options = c.channel_list(options, response)
 
     elif options2 == "Invite Something":
-         print("Who would you like to invite?")
-         response = client.users_list()
-         print("What channel would yoiu like to invite them to?")
+        print("Who would you like to invite?")
+        response = client.users_list()
+        print("What channel would yoiu like to invite them to?")
         #  response2
 
         
     elif options2[ans] == "Quit":
-        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.RESET)
+        print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.PINK)
         print(colors.CYAN + "Noice!")
         break
 
     else:
+        
         response = client.users_list()
         options = c.user_list(options, response)
 
@@ -52,7 +53,7 @@ while (True):
     a = selected_option.split(" = ")
 
     channel_id = a[1]  # Replace with the actual channel ID
-    message = input(colors.BLUE + "Enter a message: "+colors.RESET)
+    message = input(colors.BLUE + "Enter a message: "+colors.PINK)
 
 
     # Send the message
@@ -62,4 +63,4 @@ while (True):
     if response["ok"]:
         print(colors.GREEN + "Message sent successfully!")
     else:
-        print(colors.PINK + "Failed to send message. Error: ", response["error"])
+        print(colors.RED + "Failed to send message. Error: ", response["error"])
