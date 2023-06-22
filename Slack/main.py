@@ -25,11 +25,11 @@ while (True):
         response = client.conversations_list()
         options = c.channel_list(options, response)
 
-    elif options2 == "Invite Something":
+    elif options2[ans] == "Invite Something":
         print("Who would you like to invite?")
         response = client.users_list()
-        print("What channel would yoiu like to invite them to?")
-        #  response2
+        response2 = c.user_list(options, response)
+        # response2
 
         
     elif options2[ans] == "Quit":
@@ -38,7 +38,7 @@ while (True):
         break
 
     else:
-        
+        # Direct message option
         response = client.users_list()
         options = c.user_list(options, response)
 
@@ -51,16 +51,25 @@ while (True):
 
     # Define the channel and message you want to send
     a = selected_option.split(" = ")
+    print(options2[ans])
+    if options2[ans] == "Invite Something":
+        print("Where do you want to invite this person?")
+        response = client.conversations_list()
+        options=[]
+        options = c.channel_list(options, response)
+        menu = TerminalMenu(options)
+        selected_option = menu.show()
 
-    channel_id = a[1]  # Replace with the actual channel ID
-    message = input(colors.BLUE + "Enter a message: "+colors.PINK)
-
-
-    # Send the message
-    response = client.chat_postMessage(channel=channel_id, text=message)
-
-    # Check if the message was sent successfully
-    if response["ok"]:
-        print(colors.GREEN + "Message sent successfully!")
     else:
-        print(colors.RED + "Failed to send message. Error: ", response["error"])
+        channel_id = a[1]  # Replace with the actual channel ID
+        message = input(colors.BLUE + "Enter a message: "+colors.PINK)
+
+
+        # Send the message
+        response = client.chat_postMessage(channel=channel_id, text=message)
+
+        # Check if the message was sent successfully
+        if response["ok"]:
+            print(colors.GREEN + "Message sent successfully!")
+        else:
+            print(colors.RED + "Failed to send message. Error: ", response["error"])
