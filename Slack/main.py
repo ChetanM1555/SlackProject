@@ -58,8 +58,14 @@ while (True):
         options=[]
         options = c.channel_list(options, response)
         menu = TerminalMenu(options)
-        selected_option = menu.show()
+        selected_option2 = menu.show()
+        selected_option2 = options[selected_option2]
+        selected_option2 = selected_option2.split(" = ")
+        selected_option = selected_option.split(" = ")
 
+        print(selected_option[1])
+        print(selected_option2[1])
+        r = client.conversations_invite(channel= selected_option2[1], users=selected_option[1])
     else:
         channel_id = a[1]  # Replace with the actual channel ID
         message = input(colors.BLUE + "Enter a message: "+colors.PINK)
