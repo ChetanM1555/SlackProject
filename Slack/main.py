@@ -3,8 +3,11 @@ from simple_term_menu import TerminalMenu
 from colors import colors
 import choices as ch
 import create_list as c
+import config
+
 
 # Create a WebClient instance using your API token
+config.install_simple_term()
 while(True):
     
         slack_token = input(colors.BLUE + "Copy and paste your slack token here: \n" + colors.PINK)
@@ -22,27 +25,6 @@ while (True):
 
     quit,response, response2, options =ch.choose(options2, colors, client, c, ans, options)
     
-    # if options2[ans] == "Channel":
-    #     print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.PINK)
-    #     # Call the conversations.list method to retrieve the list of channels
-    #     response = client.conversations_list()
-    #     options = c.channel_list(options, response)
-
-    # elif options2[ans] == "Invite Something":
-    #     print("Who would you like to invite?")
-    #     response = client.users_list()
-    #     response2 = c.user_list(options, response)
-    #     # response2
-        
-    # elif options2[ans] == "Quit":
-    #     print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.PINK)
-    #     print(colors.CYAN + "Noice!")
-    #     break
-
-    # else:
-    #     # Direct message option
-    #     response = client.users_list()
-    #     options = c.user_list(options, response)
 
     if quit == True:
         break
