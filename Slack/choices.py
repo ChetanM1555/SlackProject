@@ -20,7 +20,15 @@ def choose(options2,colors,client, c, ans, options):
         print(colors.BLUE + "Do you want to send to a channel or direct message: " + colors.PINK)
         print(colors.CYAN + "Noice!")
         quit = True
-        
+
+    elif options2[ans] == "Create a channel":  
+        print(colors.BLUE + "What do you want to name the channel: " + colors.PINK)
+        myinput = input()
+        response = client.conversations_create(
+        name=myinput,
+        is_private=False )
+        channel = response["channel"]["id"]
+        print(f"{channel} has been created")
 
     else:
         # Direct message option

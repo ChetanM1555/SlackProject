@@ -23,8 +23,6 @@ class choices_test(unittest.TestCase):
         self.assertEqual(response, mock_conversations_list)
         self.assertEqual(response2, "")
         self.assertEqual(options, mock_channel_list)
-        # colors.BLUE.assert_called_once()
-        # colors.PINK.assert_called_once()
         client.conversations_list.assert_called_once()
         c.channel_list.assert_called_once()
 

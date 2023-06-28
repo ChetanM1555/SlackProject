@@ -16,7 +16,7 @@ while(True):
     
 
 while (True):
-    options2 = ["Channel","Direct Message","Invite Something","Quit"]
+    options2 = ["Channel","Direct Message","Invite Something","Quit", "Create a channel"]
     options = []
 
     
