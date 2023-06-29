@@ -27,7 +27,7 @@ def choose(options2,colors,client, c, ans, options):
         response = client.conversations_create(
         name=myinput,
         is_private=False )
-        channel = response["channel"]["id"]
+        channel = response["channel"]["name"]
         print(f"{channel} has been created")
 
     else:
